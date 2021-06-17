@@ -4,7 +4,6 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.util.Log
-
 class MyService : Service() {
 
     override fun onCreate() {
@@ -36,6 +35,23 @@ class MyService : Service() {
             Log.d("ServiceLog", "say Hi : $content")
         }
 
+        override fun getStudentList(): MutableList<People> {
+            val list = mutableListOf<People>()
+            for (i in 1..10) {
+                val people = People()
+                people.age = i
+                people.name = "lily${i}"
+                list.add(people)
+            }
+            return list
+        }
+
+        override fun who(): People {
+            val people = People()
+            people.age = 18
+            people.name = "lily"
+            return people
+        }
     }
 
 }
